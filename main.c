@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 17:27:29 by arobion           #+#    #+#             */
-/*   Updated: 2017/11/22 11:29:46 by arobion          ###   ########.fr       */
+/*   Updated: 2017/11/22 19:29:06 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		main(int argc, char **argv)
 {
-	int		i;
 	char	**map;
 	t_tetri *begin_list;
 
+	map = NULL;
 	begin_list = NULL;
 	if (argc != 2)
 	{
@@ -29,10 +29,8 @@ int		main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (0);
 	}
-	i = ft_count_size_list(begin_list);
-	if (!(map = ft_create_map(i)))
+	if (!(ft_solver(map, begin_list)))
 		return (0);
-	ft_solver(map, begin_list);
 	ft_clear_list(&begin_list);
 	return (0);
 }

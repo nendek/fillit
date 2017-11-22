@@ -6,34 +6,33 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 14:11:00 by arobion           #+#    #+#             */
-/*   Updated: 2017/11/22 11:38:50 by arobion          ###   ########.fr       */
+/*   Updated: 2017/11/22 19:25:25 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_count_size_list(t_tetri *begin_list)
+char	**ft_clearmap(char **map, int size)
 {
 	int		i;
-	int		j;
 
-	j = 0;
 	i = 0;
-	while (begin_list)
+	if (map)
 	{
-		i++;
-		begin_list = begin_list->next;
+		while (i < size)
+		{
+			free(map[i]);
+			map[i] = NULL;
+			i++;
+		}
+		free(map);
+		map = NULL;
+		return (map);
 	}
-	i *= 4;
-	while ((j * j) < i)
-		j++;
-	j++;
-	if (j < 4)
-		j = 4;
-	return (j);
+	return (NULL);
 }
 
-char	**ft_create_map(int nb)
+char	**ft_create_map(int size)
 {
 	char	**map;
 	int		i;
@@ -41,16 +40,16 @@ char	**ft_create_map(int nb)
 
 	i = 0;
 	j = 0;
-	map = malloc(sizeof(char *) * nb + 1);
-	while (i < nb)
+	map = malloc(sizeof(char *) * size + 1);
+	while (i < size)
 	{
-		map[i] = ft_strnew(nb);
+		map[i] = ft_strnew(size);
 		i++;
 	}
 	i = 0;
-	while (i < nb)
+	while (i < size)
 	{
-		while (j < nb)
+		while (j < size)
 		{
 			map[i][j] = '.';
 			j++;

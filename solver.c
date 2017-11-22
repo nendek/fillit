@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 15:07:00 by arobion           #+#    #+#             */
-/*   Updated: 2017/11/22 14:43:57 by arobion          ###   ########.fr       */
+/*   Updated: 2017/11/22 19:17:57 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,26 @@ static int	ft_backtrack(t_point pos, int c, char **map, t_tetri *begin_list)
 	return (0);
 }
 
-void		ft_solver(char **map, t_tetri *begin_list)
+int			ft_solver(char **map, t_tetri *begin_list)
 {
 	t_point	pos;
 	int		c;
+	int		size;
 
 	pos.x = 0;
 	pos.y = 0;
-	c = ft_strlen(*map);
-	c--;
-	c--;
-	if (!(ft_backtrack(pos, c, map, begin_list)))
+	c = 1;
+	size = 2;
+	if (!(map = ft_create_map(size)))
+		return (0);
+	while (!(ft_backtrack(pos, c, map, begin_list)))
 	{
 		c++;
-		ft_backtrack(pos, c, map, begin_list);
+		map = ft_clearmap(map, size);
+		size++;
+		if (!(map = ft_create_map(size)))
+			return (0);
 	}
 	ft_putmap(map, c);
+	return (1);
 }
