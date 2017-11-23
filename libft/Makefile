@@ -96,7 +96,7 @@ $(NAME): $(OBJ)
 
 clean:
 	/bin/rm -f $(OBJ)
-	@echo "$(RED)OBJECTS REMOVE$(END)"
+	@echo "$(RED)LIBFT OBJECTS REMOVE$(END)"
 
 fclean: clean
 	/bin/rm -f $(NAME)

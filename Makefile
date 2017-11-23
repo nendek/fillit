@@ -35,8 +35,7 @@ END = \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	cd libft/ && make
-	cd ..
+	make -C libft/
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB)
 	@echo "$(GREEN)FILLIT READY$(END)"
 	
@@ -44,14 +43,12 @@ $(NAME): $(OBJ)
 	$(CC) -c $(CFLAGS) -I $(INCLUDES) -o $@ -c $<
 
 clean:
-	cd libft/ && make clean
-	cd ..
+	make clean -C libft
 	/bin/rm -f $(OBJ)
 	@echo "$(RED)FILLIT OBJECTS REMOVE$(END)"
 
 fclean: clean
-	cd libft/ && make fclean
-	cd ..
+	make fclean -C libft
 	/bin/rm -f $(NAME)
 	@echo "$(RED)FILLIT REMOVE$(END)"
 
